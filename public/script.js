@@ -6,8 +6,16 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const longUrl = document.getElementById("longUrl").value;
-  const customCode = document.getElementById("customCode").value.trim();
+  let customCode = document.getElementById("customCode").value.trim();
   const password = document.getElementById("urlPassword").value;
+
+  // 👉 Custom code থেকে ডোমেইন পার্ট রিমুভ করে শুধুমাত্র কোড রাখি
+  if (customCode.startsWith("http")) {
+    const match = customCode.match(/exs-link\.web\.app\/(.+)/);
+    if (match) {
+      customCode = match[1];
+    }
+  }
 
   const code = customCode || generateCode(5);
 
@@ -27,7 +35,7 @@ form.addEventListener("submit", async (e) => {
   };
 
   firebase.database().ref("urls/" + code).set(data).then(() => {
-    const link = `exs-link.web.app/${code}`;
+    const link = `https://exs-link.web.app/${code}`;
     shortLink.href = link;
     shortLink.innerText = link;
     resultBox.classList.remove("hidden");
@@ -47,11 +55,9 @@ document.getElementById("copyBtn").addEventListener("click", function () {
   const shortLink = document.getElementById("shortLink");
   if (shortLink && shortLink.href) {
     navigator.clipboard.writeText(shortLink.href).then(() => {
-      // alert("Copied to clipboard!");
       alertNotify('Copied to clipboard :)', 'success', 3000);   
     }).catch(err => {
       console.error("Failed to copy:", err);
-      // alert("Failed to copy link.");
       alertNotify('Failed to copy link :(', 'error', 3000);   
     });
   }

@@ -6,30 +6,112 @@
   <title>Admin Login | Exs-Link</title>
   <link rel="shortcut icon" href="/assets/files/fav1.png" type="image/x-icon">
   <style>
-    *{
+    :root {
+      --primary: #006eff;
+      --bg: #f4f7fc;
+      --card-bg: #fff;
+      --danger: #e74c3c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-family: monospace;
     }
-    body { font-family: Arial; padding: 2rem; text-align: center; background: #f2f2f2; }
-    input { padding: 10px; margin: 10px; width: 80%; max-width: 300px; }
-    button { padding: 10px 20px; }
-    .error { color: red; }
+
+    body {
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      border: 1px solid #00000023;
+    }
+
+    .login-box h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .login-box h3 {
+      color: #444;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0051c3;
+    }
+
+    .error {
+      margin-top: 10px;
+      color: var(--danger);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 480px) {
+      .login-box {
+        padding: 30px 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h2>Exs-link 🔐Admin Panel</h2>
-  <h3>Login first 👇</h3>
-  <input type="email" id="email" placeholder="Admin Email" />
-  <br>
-  <input type="password" id="password" placeholder="Password" />
-  <br>
-  <button onclick="login()">Login</button>
-  <p class="error" id="errorMsg"></p>
+  <div class="login-box">
+    <h2>🔐 Exs-Link Admin Panel</h2>
+    <h3>Login first 👇</h3>
+
+    <input type="email" id="email" placeholder="Admin Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p class="error" id="errorMsg"></p>
+  </div>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="/firebaseConfig.js"></script>
 
+  <!-- Login logic (unchanged) -->
   <script>
     function login() {
       const email = document.getElementById("email").value;

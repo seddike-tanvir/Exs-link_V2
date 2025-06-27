@@ -6,70 +6,151 @@
   <title>Redirecting...</title>
   <link rel="shortcut icon" href="/assets/files/fav1.png" type="image/x-icon">
   <style>
-    .hidden { display: none; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: monospace;
+
+    }
+
+    body {
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid #00000023;
+
+    }
+
+    h2 {
+      color: #006eff;
+      margin-bottom: 15px;
+    }
+
+    #statusText {
+      margin-top: 20px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    #passwordPrompt {
+      margin-top: 15px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 10px 18px;
+      background-color: #006eff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0053cc;
+    }
+
+    #error {
+      margin-top: 10px;
+      color: red;
+      font-size: 14px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin: 0 16px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>🔒 Enter Password</h2>
+    <h2>🔒 Exs-Link Redirect</h2>
     <div id="passwordPrompt" class="hidden">
       <input type="password" id="redirectPassword" placeholder="Enter password to continue" />
       <button onclick="verifyPassword()">Unlock Link</button>
-      <p id="error" style="color: red"></p>
+      <p id="error"></p>
     </div>
     <p id="statusText">Loading...</p>
   </div>
 
-<!-- Firebase compat SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+  <!-- Firebase compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
-<!-- Firebase config -->
-<script src="/firebaseConfig.js"></script>
+  <!-- Firebase config -->
+  <script src="/firebaseConfig.js"></script>
 
-<!-- Main redirect logic -->
-<script>
-  const params = window.location.pathname.split("/")[1];
-  const statusText = document.getElementById("statusText");
-  const passwordPrompt = document.getElementById("passwordPrompt");
-  let realPassword = null;
-  let redirectUrl = null;
-  let clickCount = 0;
+  <!-- Your original JavaScript (unchanged) -->
+  <script>
+    const params = window.location.pathname.split("/")[1];
+    const statusText = document.getElementById("statusText");
+    const passwordPrompt = document.getElementById("passwordPrompt");
+    let realPassword = null;
+    let redirectUrl = null;
+    let clickCount = 0;
 
-  firebase.database().ref("urls/" + params).once("value")
-    .then(snapshot => {
-      if (!snapshot.exists()) {
-        statusText.textContent = "❌ Invalid or expired link.";
-        return;
-      }
+    firebase.database().ref("urls/" + params).once("value")
+      .then(snapshot => {
+        if (!snapshot.exists()) {
+          statusText.textContent = "❌ Invalid or expired link.";
+          return;
+        }
 
-      const data = snapshot.val();
-      redirectUrl = data.originalUrl;
-      realPassword = data.password || null;
-      clickCount = data.clicks || 0;
+        const data = snapshot.val();
+        redirectUrl = data.originalUrl;
+        realPassword = data.password || null;
+        clickCount = data.clicks || 0;
 
-      if (!realPassword) {
+        if (!realPassword) {
+          firebase.database().ref("urls/" + params + "/clicks").set(clickCount + 1);
+          window.location.href = redirectUrl;
+        } else {
+          statusText.textContent = "🔒 Password required.";
+          passwordPrompt.classList.remove("hidden");
+        }
+      })
+      .catch(error => {
+        statusText.textContent = "❌ Error: " + error.message;
+      });
+
+    function verifyPassword() {
+      const input = document.getElementById("redirectPassword").value;
+      if (input === realPassword) {
         firebase.database().ref("urls/" + params + "/clicks").set(clickCount + 1);
         window.location.href = redirectUrl;
       } else {
-        statusText.textContent = "🔒 Password required.";
-        passwordPrompt.classList.remove("hidden");
+        document.getElementById("error").textContent = "❌ Wrong password!";
       }
-    })
-    .catch(error => {
-      statusText.textContent = "❌ Error: " + error.message;
-    });
-
-  function verifyPassword() {
-    const input = document.getElementById("redirectPassword").value;
-    if (input === realPassword) {
-      firebase.database().ref("urls/" + params + "/clicks").set(clickCount + 1);
-      window.location.href = redirectUrl;
-    } else {
-      document.getElementById("error").textContent = "❌ Wrong password!";
     }
-  }
-</script>
-
+  </script>
 </body>
 </html>
