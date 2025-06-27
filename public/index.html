@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exs-Link - URL Shortener</title>
+  <link rel="shortcut icon" href="/assets/files/fav1.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="/custom_alertNotifyTheme.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js "></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js "></script>
+</head>
+<body>
+  <div class="container">
+    <p class="h1">Exs-Link</p>
+    <p class="h2">Shorten your URL with optional password protection</p>
+
+    <form id="shortenForm">
+      <input type="url" id="longUrl" placeholder="Enter Your URL" required />
+      <input type="text" id="customCode" placeholder="Custom Short Code (optional)" />
+      <input type="password" id="urlPassword" placeholder="Password (optional)" />
+      <button type="submit">Shorten</button>
+    </form>
+
+    <div id="resultBox" class="hidden">
+      <p>Your Short Link:</p>
+      <div class="short-link-container">
+        <a id="shortLink" href="#" target="_blank"></a>
+        <button id="copyBtn" class="copy-btn">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="resultBox" class="hidden">
+    <p>Your Short Link:</p>
+    <div class="short-link-container">
+      <a id="shortLink" href="#" target="_blank"></a>
+      <button id="copyBtn" class="copy-btn">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <section class="footer">
+    <p class="p2">&copy; <span>2021-<span id="current_year"></span></span> Exs-Link, All rights reserved.</p>
+    <p class="p2">Developed by <a href="https://tanvirseddike.web.app/">Seddike Tanvir</a></p>
+    <p class="f_3">
+      <a href="/admin">Admin Panel</a> 
+      <!-- <a href="#">Payment Policy</a> | -->
+      <!-- <a href="#">Refund Policy</a> | -->
+      <!-- <a href="#">Give Feedback</a> -->
+    </p>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js "></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js "></script>
+  <script src="firebaseConfig.js"></script>
+  <script src="script.js"></script>
+  <script src="https://alertnotify.pages.dev/alertNotify/alertNotify.min.js"></script>
+  <script> document.getElementById('current_year').textContent = new Date().getFullYear(); </script>
+
+
+</body>
+</html>

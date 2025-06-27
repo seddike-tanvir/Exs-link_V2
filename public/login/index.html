@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Login | Exs-Link</title>
+  <link rel="shortcut icon" href="/assets/files/fav1.png" type="image/x-icon">
+  <style>
+    *{
+      font-family: monospace;
+    }
+    body { font-family: Arial; padding: 2rem; text-align: center; background: #f2f2f2; }
+    input { padding: 10px; margin: 10px; width: 80%; max-width: 300px; }
+    button { padding: 10px 20px; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Exs-link 🔐Admin Panel</h2>
+  <h3>Login first 👇</h3>
+  <input type="email" id="email" placeholder="Admin Email" />
+  <br>
+  <input type="password" id="password" placeholder="Password" />
+  <br>
+  <button onclick="login()">Login</button>
+  <p class="error" id="errorMsg"></p>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="/firebaseConfig.js"></script>
+
+  <script>
+    function login() {
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+      firebase.auth().signInWithEmailAndPassword(email, pass)
+        .then(() => {
+          window.location.href = "/admin/";
+        })
+        .catch(error => {
+          document.getElementById("errorMsg").innerText = error.message;
+        });
+    }
+  </script>
+</body>
+</html>

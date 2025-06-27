@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "exs-link",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/:code",
+        "destination": "/redirect/index.html"
+      }
+    ]
+  }
+}
