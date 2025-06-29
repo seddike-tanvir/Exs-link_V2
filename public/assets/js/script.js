@@ -23,7 +23,7 @@ form.addEventListener("submit", async (e) => {
   const ref = firebase.database().ref("urls/" + code);
   const snapshot = await ref.once("value");
   if (snapshot.exists() && customCode) {
-    alert("Custom code already taken!");
+    alert("Custom code already taken! Choose another one...");
     return;
   }
 

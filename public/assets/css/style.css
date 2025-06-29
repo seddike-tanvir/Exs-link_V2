@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: 'Segoe UI', sans-serif; */
+  /* font-family: monospace; */
+  transition: all 0.4s ease;
+  font-family: var(--sm_font_16);
+  /* scrollbar-width: none; */
+}
+
+body {
+  background: #c7d2fee7;
+  background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex-direction: column; */
+  min-height: 100vh;
+  /* scrollbar-width: none; */
+
+}
+/* স্ক্রলবার সৌন্দর্যময় করা */
+body::-webkit-scrollbar {
+  width: 8px; 
+  transition:all 0.4s ease;
+
+}
+
+body::-webkit-scrollbar-track {
+  background: #f0f0f0; 
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #006effe1; /* স্ক্রলবারের রঙ */
+  border-radius: 20px; /* স্ক্রলবারের কোণ বায়ুমণ্ডলীয় */
+  transition:all 0.4s ease;;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #006eff; /* মাউস ওভার সময় রঙ বদলে যাবে */
+}
+.containerAndFooter{
+  margin-top: 3rem;
+  /* margin-bottom: 2rem; */
+}
+.container {
+  background: white;
+  width: 95%;
+  max-width: 450px;
+  /* height: max-content; */
+  margin:0 auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  border: 1px solid #00000031;
+  font-family: var(--sm_font_16);
+  /* margin-bottom: 2rem; */
+}
+
+.h1 {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: #006eff;
+  margin-top: -.5rem;
+  margin-bottom: -.5rem;
+  font-family: var(--sm_font_10);
+  white-space: nowrap;
+}
+
+.h2 {
+  font-size: 0.95rem;
+  color: #00000063;
+  margin-bottom: 2.5rem;
+  /* font-weight: bold; */
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 0.95rem;
+}
+
+/* input:focus {
+  border-color: #1d4ed8;
+  outline: none;
+} */
+
+button[type="submit"] {
+  width: 100%;
+  background: #245eff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 7px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: #174bbb;
+}
+
+.resultBox{
+  margin-top: 3rem;
+}
+.short-link-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#shortLink {
+  font-weight: bold;
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.copy-btn {
+  padding: 5px 10px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: #059669;
+}
+
+.footer {
+  padding: 2rem 0px;
+  background: #e0e7ff00;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 2vh;
+}
+
+.footer p{
+  margin-top: .1rem;
+}
+
+.footer a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.f_3{
+  margin-top: 1rem;
+}
+
+.f_3 a{
+  color: #2563eb;
+
+}
+
+.hidden {
+  display: none;
+}

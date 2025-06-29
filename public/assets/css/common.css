@@ -1,0 +1,9 @@
+*{
+    transition: all 0.4s ease;
+}
+
+input:focus{
+    outline: none;
+    border: 1px solid #1e80ff7a;
+    box-shadow: 0 0 5px #1e80ff;
+}

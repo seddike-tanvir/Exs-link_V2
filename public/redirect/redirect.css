@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    /* font-family: monospace; */
+    font-family: var(--sm_font_16);
+    
+}
+
+body {
+    background: #c7d2fee7;
+    background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    height: max-content;
+    text-align: center;
+    /* margin-top: 50%;
+    transform: translateY(-50%); */
+    border: 1px solid #00000033;
+}
+
+.h1 {
+    color: #006eff;
+    margin-top: .9rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+
+}
+
+#statusTextForPass{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #ff00007e;
+    font-size: .9rem;
+    width: 100%;
+}
+
+#statusText {
+    margin-top: 20px;
+    color: #333;
+    font-size: 16px;
+}
+
+#passwordPrompt {
+    margin-top: 3rem;
+    margin-bottom: -.5rem;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 14px;
+    text-align: center;
+}
+
+button {
+    padding: 5px 12px;
+    background-color: #006eff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: .9rem;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0053cc;
+}
+
+#error {
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 0 16px;
+    }
+}

@@ -7,11 +7,10 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "cleanUrls": true,
     "rewrites": [
-      {
-        "source": "/:code",
-        "destination": "/redirect/index.html"
-      }
+      { "source": "/:code", "destination": "/redirect/index.html" },
+      { "source": "**", "destination": "/404.html" }
     ]
   }
 }
