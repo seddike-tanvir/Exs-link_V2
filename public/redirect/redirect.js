@@ -32,7 +32,7 @@ firebase.database().ref("urls/" + code).once("value")
       firebase.database().ref("urls/" + code + "/clicks").set(clickCount + 1);
       window.location.href = redirectUrl;
     } else {
-      h1_ForPass.classList.add("hidden");
+      h1_ForNonPass.classList.add("hidden");
       statusText.classList.add("hidden");
       h1_ForPass.classList.remove("hidden");
       passwordPrompt.classList.remove("hidden");
