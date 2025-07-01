@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Login | Exs-Link</title>
+  <link rel="shortcut icon" href="/assets/files/fav1.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://sm-uic.pages.dev/font/font.css">
+  <link rel="stylesheet" href="./user_login.css">
+  <link rel="stylesheet" href="/assets/css/common.css">
+
+</head>
+<body>
+  <div class="login-box">
+    <h2>🔐 Exs-Link User Dashboard</h2>
+    <h3>Login first 👇</h3>
+
+    <input type="email" id="email" placeholder="User Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <br><br>
+    <p class="signUp_forgotPass" id="signUp_forgotPass">New with Exs-Link? <a href="">Register</a> from here. <br> Or,<br> <a href="">Forgot password</a></p>
+    <p class="error" id="errorMsg"></p>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="/assets/js/firebaseConfig.js"></script>
+
+  <!-- Login logic (unchanged) -->
+  <script src="./user_login.js"></script>
+  
+        <!-- Custom notice -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+        <script>
+          // Override window.alert
+          window.alert = function(message) {
+              Swal.fire({
+                  text: message,
+                  icon: "info",
+                  confirmButtonText: "Ok"
+              });
+          };
+          // Now calling alert() will show a SweetAlert2 popup
+          alert("🚧 Maintenance Mode: This webpage is under Maintenance. Some features may be temporarily unavailable.");
+        </script>
+</body>
+</html>

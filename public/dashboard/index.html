@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="/assets/css/preloader.css">
   <link rel="shortcut icon" href="/assets/files/fav1.png" type="image/x-icon">
   <link rel="stylesheet" href="https://sm-uic.pages.dev/font/font.css">
-  <link rel="stylesheet" href="/admin/adminLogic.js">
-  <link rel="stylesheet" href="/admin/admin.css">
+  <link rel="stylesheet" href="/dashboard/dashboard.css">
   <link rel="stylesheet" href="/assets/css/common.css">
 
 </head>
@@ -16,7 +15,7 @@
   <section class="pre-loader"></section>
 
   <div class="top-bar">
-    <p class="h1">🔐 Exs-Link Admin Panel</p>
+    <p class="h1">🔐 Exs-Link Dashboard</p>
     <button class="logout" onclick="logout()">Logout</button>
   </div>
 
@@ -39,6 +38,7 @@
       <tbody id="linkTableBody">
         <!-- Links will be populated by JS -->
       </tbody>
+
     </table>
   </div>
 
@@ -55,9 +55,23 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="/assets/js/firebaseConfig.js"></script>
 
-  <!-- Admin logic (unchanged) -->
-  <script src="/admin/adminLogic.js"></script>
+  <!-- dashboard logic (unchanged) -->
+  <script src="/dashboard/dashboard.js"></script>
 
 
+          <!-- Custom notice -->
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+          <script>
+            // Override window.alert
+            window.alert = function(message) {
+                Swal.fire({
+                    text: message,
+                    icon: "info",
+                    confirmButtonText: "Ok"
+                });
+            };
+            // Now calling alert() will show a SweetAlert2 popup
+            alert("🚧 Maintenance Mode: This webpage is under Maintenance. Some features may be temporarily unavailable.");
+          </script>
 </body>
 </html>

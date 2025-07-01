@@ -1,0 +1,90 @@
+
+:root {
+    --primary: #006eff;
+    --bg: #f4f7fc;
+    --card-bg: #fff;
+    --danger: #e74c3c;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: monospace; */
+    font-family: var(--sm_font_16);
+  }
+
+  body {
+    background: #c7d2fee7;
+    background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .login-box {
+    background: var(--card-bg);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid #00000031;
+  }
+
+  .login-box h2 {
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+
+  .login-box h3 {
+    color: #444;
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus {
+    border-color: var(--primary);
+    outline: none;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #0051c3;
+  }
+
+  .error {
+    margin-top: 10px;
+    color: var(--danger);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 480px) {
+    .login-box {
+      padding: 30px 20px;
+    }
+  }
